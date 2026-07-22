@@ -1,0 +1,46 @@
+LeanGrid Labs Source Available License v1.0
+Copyright (c) 2026 LeanGrid Labs. All rights reserved.
+
+GRANT OF RIGHTS
+
+LeanGrid Labs grants you a limited, non-exclusive, non-transferable,
+non-sublicensable right to:
+
+  1. View and run this software for personal evaluation and non-commercial
+     demonstration purposes only.
+  2. Submit issues and contributions to the official repository under the
+     contribution terms below.
+
+RESTRICTIONS
+
+You may NOT:
+
+  1. Reverse engineer, decompile, disassemble, or otherwise attempt to
+     derive the source code, algorithms, or techniques of any compiled or
+     obfuscated components of this software.
+  2. Use this software or any portion of it in a production environment,
+     commercial product, or revenue-generating service without a separate
+     written license from LeanGrid Labs.
+  3. Remove, alter, or obscure any proprietary notices, labels, or marks.
+  4. Redistribute, sublicense, or resell this software or any derivative
+     of it in any form.
+
+PATENT NOTICE
+
+One or more patent applications covering techniques embodied in this
+software are pending. No patent license is granted by this license.
+Use of this software does not grant any rights under those applications
+or any patents that may issue from them.
+
+CONTRIBUTIONS
+
+By submitting a contribution (pull request, patch, or suggestion) to this
+repository, you agree that LeanGrid Labs may use your contribution under
+the terms of this license or any other terms LeanGrid Labs chooses, without
+any obligation to you.
+
+DISCLAIMER
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED. IN NO EVENT SHALL LEANGRID LABS BE LIABLE FOR ANY CLAIM,
+DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THIS SOFTWARE.
