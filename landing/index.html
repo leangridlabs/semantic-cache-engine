@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semantic Cache Engine — LeanGrid Labs</title>
+  <meta name="description" content="Stop paying Copilot to re-read your codebase. Semantic Cache Engine cuts session-start token usage by caching your reasoning context locally. Free tier available." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── nav ──────────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="6" height="6" rx="1.5" fill="#58a6ff"/>
+        <rect x="11" y="1" width="6" height="6" rx="1.5" fill="#3fb950"/>
+        <rect x="1" y="11" width="6" height="6" rx="1.5" fill="#3fb950"/>
+        <rect x="11" y="11" width="6" height="6" rx="1.5" fill="#58a6ff" opacity=".4"/>
+      </svg>
+      LeanGrid <span>Labs</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#try-it">Try it</a></li>
+      <li><a href="https://github.com/leangridlabs/semantic-cache-engine/releases" target="_blank" rel="noopener">Releases</a></li>
+      <li><a href="#early-access" class="btn-nav">Early Access</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── hero ─────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">&#9679;&nbsp; Free Tier — Now Available</div>
+
+    <h1 class="hero-headline">
+      Stop paying Copilot<br />to <em>re-read your codebase.</em>
+    </h1>
+
+    <p class="hero-sub">
+      Semantic Cache Engine sits alongside GitHub Copilot and caches your
+      reasoning context locally. Warm sessions answer from cache —
+      zero tokens, instant recall.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#try-it" class="btn-primary">Try the Demo</a>
+      <a href="#early-access" class="btn-secondary">Get Early Access</a>
+    </div>
+
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <span class="num">75–78%</span>
+        <span class="label">fewer session-start tokens vs top-K retrieval</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">254×</span>
+        <span class="label">fewer tokens vs full-repo context (1,719 vs 437K)</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">local</span>
+        <span class="label">no data leaves your machine</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── how it works ──────────────────────────────────────────────────────── -->
+<section id="how-it-works">
+  <div class="container">
+    <h2>How it works</h2>
+    <p>Three steps. No config. Works with any codebase.</p>
+
+    <div class="steps">
+      <div class="step-card" data-step="01">
+        <span class="step-icon">&#128269;</span>
+        <h3>Ingest</h3>
+        <p>
+          The engine scans your repo, chunks the source into semantic units,
+          and builds a local reasoning graph. Runs once per repo —
+          incrementally updates on file changes.
+        </p>
+      </div>
+      <div class="step-card" data-step="02">
+        <span class="step-icon">&#128190;</span>
+        <h3>Cache</h3>
+        <p>
+          Every question Copilot answers about your codebase creates a
+          reasoning card — stored in a local SQLite database on your machine.
+          No cloud, no telemetry, no source code sent anywhere.
+        </p>
+      </div>
+      <div class="step-card" data-step="03">
+        <span class="step-icon">&#9889;</span>
+        <h3>Recall</h3>
+        <p>
+          Next session, the same questions hit the cache instantly. No LLM
+          call, no token spend. Share an encrypted bundle with your team
+          and they start warm too.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── try it ────────────────────────────────────────────────────────────── -->
+<section id="try-it">
+  <div class="container">
+    <h2>Try it in 60 seconds</h2>
+    <p>Docker required. No API key, no account — just run the command and watch the cache work.</p>
+
+    <div class="demo-layout" style="margin-top: 40px;">
+
+      <!-- Terminal mockup -->
+      <div class="terminal-box">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span style="font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-left: 8px;">sce-demo</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">$ </span><span class="t-cmd">docker run -it ghcr.io/leangridlabs/semantic-cache-engine-demo:latest</span></div>
+          <div>&nbsp;</div>
+          <div class="t-label">── Step 1: Ingest Flask 3.0.3 ──────────────</div>
+          <div><span class="t-hit">✓</span>  Indexed 312 chunks · workspace: session-a</div>
+          <div>&nbsp;</div>
+          <div class="t-label">── Step 2: Cold run — empty cache ────────────</div>
+          <div><span class="t-gen">GEN</span>  How does Flask route a URL to a view…</div>
+          <div><span class="t-gen">GEN</span>  What is the application context…</div>
+          <div><span class="t-gen">GEN</span>  What is the request context…</div>
+          <div class="t-out">  … 7 more questions generated</div>
+          <div class="t-out">  Hits: 0/10 · Cards created: 10 · ~12,400 tokens</div>
+          <div>&nbsp;</div>
+          <div class="t-label">── Step 3: Export encrypted bundle ───────────</div>
+          <div><span class="t-hit">✓</span>  Bundle written: session-export-…zip</div>
+          <div class="t-enc">  First 32 bytes: 8f 2a b1 c7 04 e9 3d 5f a0 12 76 84</div>
+          <div class="t-enc">                  ← AES-256-GCM ciphertext</div>
+          <div>&nbsp;</div>
+          <div class="t-label">── Step 4: Import → fresh workspace ──────────</div>
+          <div><span class="t-hit">✓</span>  Imported 10 reasoning cards into session-b</div>
+          <div>&nbsp;</div>
+          <div class="t-label">── Step 5: Warm run — pre-loaded cache ────────</div>
+          <div><span class="t-hit">HIT</span>  How does Flask route a URL to a view…</div>
+          <div><span class="t-hit">HIT</span>  What is the application context…</div>
+          <div><span class="t-hit">HIT</span>  What is the request context…</div>
+          <div class="t-out">  … 7 more cache hits</div>
+          <div>&nbsp;</div>
+          <div class="t-save">  Hits: 10/10 · Tokens: 0 · Savings: 100%</div>
+        </div>
+      </div>
+
+      <!-- Step list -->
+      <div>
+        <ul class="demo-steps-list">
+          <li>
+            <span class="step-num">1</span>
+            <div>
+              <strong>Ingest the Flask source</strong>
+              <span>SCE chunks Flask 3.0.3 into a local reasoning graph. Takes ~10 seconds.</span>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div>
+              <strong>Run 10 questions cold</strong>
+              <span>Every question misses cache and is generated. Ten reasoning cards are created and stored locally.</span>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div>
+              <strong>Export an encrypted bundle</strong>
+              <span>The cards are packed into an AES-256-GCM encrypted bundle. Open the file — it's unreadable binary.</span>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">4</span>
+            <div>
+              <strong>Import into a fresh workspace</strong>
+              <span>session-b starts with zero prior context. Only the bundle is imported — simulating a different machine.</span>
+            </div>
+          </li>
+          <li>
+            <span class="step-num">5</span>
+            <div>
+              <strong>Run the same 10 questions warm</strong>
+              <span>All 10 questions hit the cache. Zero tokens used. 100% savings — provably.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Video embed placeholder -->
+    <a href="#" class="video-wrap" id="video-link" aria-label="Watch the 2-minute demo video">
+      <span class="play">&#9654;</span>
+      <p>Watch the 2-minute walkthrough<br /><span style="font-size: 0.78rem;">export &rarr; import &rarr; 100% savings</span></p>
+    </a>
+  </div>
+</section>
+
+<!-- ── evidence ──────────────────────────────────────────────────────────── -->
+<section id="evidence">
+  <div class="container">
+    <h2>Measured. Reproducible.</h2>
+    <p>Claim 1b measured with real OpenAI API calls (gpt-4o-mini), verified on two separate machines. Egress proof verified via <code>netstat</code> on two machines. Full methodology in <a href="https://github.com/leangridlabs/semantic-cache-engine" style="color:var(--accent)">EVIDENCE.md</a>.</p>
+
+    <div class="metric-cards" style="margin-top: 48px;">
+      <div class="metric-card accent-border">
+        <span class="metric-num">75–78%</span>
+        <span class="metric-label">Fewer session-start tokens vs realistic top-K retrieval (claim 1b · two machines)</span>
+      </div>
+      <div class="metric-card accent-border">
+        <span class="metric-num">0</span>
+        <span class="metric-label">Third-party outbound connections &mdash; netstat verified on two machines, 1,694 chunks ingested</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">100%</span>
+        <span class="metric-label">Token savings on warm demo run — 10/10 cache hits, 0 tokens used (Docker demo, any machine)</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">local</span>
+        <span class="metric-label">All data stays on your machine — no telemetry, no cloud sync</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── early access ───────────────────────────────────────────────────────── -->
+<section id="early-access">
+  <div class="container">
+    <h2>Get early access</h2>
+    <p>
+      The VS Code extension is available now on GitHub Releases. Drop your email
+      and we'll notify you about updates, the team sharing feature, and the
+      self-hosted tier.
+    </p>
+
+    <!-- Formspree: replace YOUR_FORM_ID with your actual Formspree form ID -->
+    <form
+      class="waitlist-form"
+      action="https://formspree.io/f/mdaqdpzq"
+      method="POST"
+      id="waitlist-form"
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="you@company.com"
+        required
+        autocomplete="email"
+      />
+      <button type="submit">Get Early Access</button>
+    </form>
+    <span class="form-note">No spam. Unsubscribe anytime.</span>
+    <div id="form-success">&#10003;&nbsp; You're on the list — we'll be in touch!</div>
+
+    <div style="margin-top: 40px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+      <a
+        href="https://github.com/leangridlabs/semantic-cache-engine/releases"
+        class="btn-primary"
+        target="_blank"
+        rel="noopener"
+      >
+        Download VSIX &rarr;
+      </a>
+      <!-- GitHub star badge — replace leangridlabs/semantic-cache-engine with your repo -->
+      <a
+        href="https://github.com/leangridlabs/semantic-cache-engine"
+        target="_blank"
+        rel="noopener"
+        class="github-badge"
+        aria-label="Star on GitHub"
+      >
+        <img
+          src="https://img.shields.io/github/stars/leangridlabs/semantic-cache-engine?style=social"
+          alt="GitHub Stars"
+          loading="lazy"
+        />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── footer ────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <span class="footer-logo">LeanGrid Labs &copy; 2026</span>
+      <ul class="footer-links">
+        <li><a href="https://github.com/leangridlabs/semantic-cache-engine" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/leangridlabs/semantic-cache-engine/releases" target="_blank" rel="noopener">Releases</a></li>
+        <li><a href="https://github.com/leangridlabs/semantic-cache-engine/issues" target="_blank" rel="noopener">Issues</a></li>
+      </ul>
+    </div>
+    <a
+      href="https://github.com/leangridlabs/semantic-cache-engine"
+      target="_blank"
+      rel="noopener"
+      class="github-badge"
+      aria-label="Star on GitHub"
+    >
+      <img
+        src="https://img.shields.io/github/stars/leangridlabs/semantic-cache-engine?style=social"
+        alt="GitHub Stars"
+        loading="lazy"
+      />
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Formspree AJAX submission
+  const form = document.getElementById('waitlist-form');
+  const success = document.getElementById('form-success');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }
+      } catch (_) {
+        form.submit(); // fallback to regular submit
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

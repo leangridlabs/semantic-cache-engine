@@ -1,0 +1,14 @@
+# Semantic Cache Engine — local reasoning cache
+# This directory is created by the extension and is local-only.
+# It should never be committed to source control.
+.reason/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+
+# Docker build artifacts
+*.tar
